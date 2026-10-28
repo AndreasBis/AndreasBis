@@ -1,4 +1,4 @@
-### Hi, I'm Andreas
+### Hi, I'm Andreas Bisiadis
 
 I'm a CS student at the University of West Attica in Athens. I started doing ML on Kaggle at 16. These days most of my time goes into LLMs (both proprietary and open-weight ones), mainly how they reason and how to serve them efficiently.
 
