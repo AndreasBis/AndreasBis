@@ -10,7 +10,7 @@ After that I wanted to go one level deeper, from configuring inference engines t
 
 #### What I'm working on
 
-- **SGLang.** I opened [PR #46153](https://github.com/sgl-project/sglang/pull/46153) to support NVIDIA's Qwen3.8-Flash-Next-FP4-Local checkpoint on a single Blackwell GPU. It started as a branch I hacked together to run the model at home since there was no upstream support. I'm looking for more: bug fixes, model support, multi-modality knobs, throughput.
+- **Kernel development.** Right now that means FP8 GEMM in FlashInfer, behind SGLang's `flashinfer_cutlass` FP8 GEMM backend. On SM120 Blackwell GPUs its groupwise FP8 GEMM had a single 128×128 tile, which wastes most of each CTA at small batch sizes, so I opened [issue #8702](https://github.com/flashinfer-ai/flashinfer/issues/8702) and [PR #9464](https://github.com/flashinfer-ai/flashinfer/pull/9464) to add swap-AB small-M tiles. I'm getting hands-on with how GEMMs split work across CTAs: tile shapes, swap-AB, split-K and stream-K.
 - **Open models.** If it fits in one RTX PRO 6000 Blackwell, I've probably tried it. Lately that's Qwen3.8-27B and Qwen3.8-Flash-Next on SGLang and vLLM, which also power my coding agents through OpenCode.
 - **Learning in public.** I keep my repos documented, including the code and write-ups from my AIMO work.
 
