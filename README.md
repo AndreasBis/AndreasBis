@@ -10,12 +10,13 @@ After that I wanted to go one level deeper, from configuring inference engines t
 
 #### What I'm working on
 
-- **Kernel development.** Right now that means FP8 GEMM in FlashInfer, behind SGLang's `flashinfer_cutlass` FP8 GEMM backend. On SM120 Blackwell GPUs its groupwise FP8 GEMM had a single 128×128 tile, which wastes most of each CTA at small batch sizes, so I opened [issue #8702](https://github.com/flashinfer-ai/flashinfer/issues/8702) and [PR #9464](https://github.com/flashinfer-ai/flashinfer/pull/9464) to add swap-AB small-M tiles. I'm getting hands-on with how GEMMs split work across CTAs: tile shapes, swap-AB, split-K and stream-K.
+- **Kernel development.** Right now that means FP8 GEMM in FlashInfer, behind SGLang's `flashinfer_cutlass` FP8 GEMM backend. On SM120 Blackwell GPUs its groupwise FP8 GEMM had a single 128×128 tile, which wastes most of each CTA at small batch sizes. I opened [issue #8702](https://github.com/flashinfer-ai/flashinfer/issues/8702) and wrote [PR #9464](https://github.com/flashinfer-ai/flashinfer/pull/9464), merged into FlashInfer in November 2026, which adds swap-AB small-M tiles. On an RTX PRO 6000 it cuts the FP8 GEMM time of a forward pass by up to 1.9× at batch size 1, and single-stream decode of Qwen3.8-27B-FP8 on SGLang goes from 29.9 to 48.2 tokens/s. I'm getting hands-on with how GEMMs split work across CTAs: tile shapes, swap-AB, split-K and stream-K.
 - **Open models.** If it fits in one RTX PRO 6000 Blackwell, I've probably tried it. Lately that's Qwen3.8-27B and Qwen3.8-Flash-Next on SGLang and vLLM, which also power my coding agents through OpenCode.
 - **Learning in public.** I keep my repos documented, including the code and write-ups from my AIMO work.
 
 #### Elsewhere
 
+- Contributor to [FlashInfer](https://github.com/flashinfer-ai/flashinfer): SM120 FP8 GEMM speedup merged in [PR #9464](https://github.com/flashinfer-ai/flashinfer/pull/9464)
 - Kaggle Notebooks Master (best rank: 31st globally) · Competitions Expert (best rank: 1,011th globally)
 - Silver medal in CIBMTR survival prediction, plus two bronze medals in NLP competitions
 
